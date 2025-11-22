@@ -3,7 +3,7 @@ NAME = push_swap
 
 # Compilateur et flags
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -g3
 INCLUDES = -I./includes -I./mylibft
 
 # Chemins
@@ -16,7 +16,13 @@ LIBFT = $(LIBFT_DIR)/libft.a
 
 # Fichiers sources
 SRCS = $(SRC_DIR)/main.c\
-	$(SRC_DIR)/parsing/parsing.c
+	$(SRC_DIR)/parsing/parsing.c\
+	$(SRC_DIR)/parsing/checks.c\
+	#$(SRC_DIR)/operation/push.c\
+	$(SRC_DIR)/operation/resverse.c\
+	$(SRC_DIR)/operation/rotate.c\
+	$(SRC_DIR)/operation/swap.c
+
 
 # Fichiers objets
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
