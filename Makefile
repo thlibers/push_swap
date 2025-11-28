@@ -18,10 +18,14 @@ LIBFT = $(LIBFT_DIR)/libft.a
 SRCS = $(SRC_DIR)/main.c\
 	$(SRC_DIR)/parsing/parsing.c\
 	$(SRC_DIR)/parsing/checks.c\
-	#$(SRC_DIR)/operation/push.c\
-	$(SRC_DIR)/operation/resverse.c\
-	$(SRC_DIR)/operation/rotate.c\
-	$(SRC_DIR)/operation/swap.c
+	$(SRC_DIR)/operations/push.c\
+	$(SRC_DIR)/operations/reverse.c\
+	$(SRC_DIR)/operations/rotate.c\
+	$(SRC_DIR)/operations/swap.c\
+	$(SRC_DIR)/algorithm/init_stack.c\
+	$(SRC_DIR)/algorithm/sort_stack.c\
+	$(SRC_DIR)/algorithm/mini_sort.c\
+	$(SRC_DIR)/algorithm/utils.c
 
 
 # Fichiers objets

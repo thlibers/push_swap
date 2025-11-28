@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 11:27:39 by thlibers          #+#    #+#             */
-/*   Updated: 2025/11/22 14:49:01 by thlibers         ###   ########.fr       */
+/*   Updated: 2025/11/26 15:39:57 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ typedef struct s_stack
 
 /* === PARSING === */
 // checks.c
-int		*check_allnconvert(char **tab, char **tmp);
+int		*check_allnconvert(char **tab, char **tmp, int *size);
 
 // parsing.c
-int		*parsing(char **tab);
+int		*parsing(char **tab, int *size);
 void	free_tab(char **tab);
 
 /* === OPERATIONS === */
@@ -63,5 +63,24 @@ void	rr(t_stack *stack);
 void	sa(t_stack *stack, int print);
 void	sb(t_stack *stack, int print);
 void	ss(t_stack *stack);
+
+/* === ALGORITHM === */
+// init_stack.c
+void	init_stack(t_stack *stack, int *numbers, int size);
+
+// sort_stack.c
+void	chunk_sort(t_stack *stack);
+
+// mini_sort.c
+void	sort_two(t_stack *stack);
+void	sort_three(t_stack *stack);
+void	sort_four(t_stack *stack);
+void	sort_five(t_stack *stack);
+
+// utils.c
+t_data	*ft_lstnew_mod(int data);
+int		index_max_in_b(t_data *b);
+int		index_max_pos(t_data *b, int index);
+int		get_stack_size(t_data *stack);
 
 #endif

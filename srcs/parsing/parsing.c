@@ -6,18 +6,18 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 14:17:33 by thlibers          #+#    #+#             */
-/*   Updated: 2025/11/22 15:49:39 by thlibers         ###   ########.fr       */
+/*   Updated: 2025/11/27 12:14:07 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-void free_tab(char **tab)
+void	free_tab(char **tab)
 {
-	int i;
+	int	i;
 
 	if (!tab)
-		return;
+		return ;
 	i = 0;
 	while (tab[i])
 	{
@@ -27,27 +27,28 @@ void free_tab(char **tab)
 	free(tab);
 }
 
-int *parsing(char **tab)
+int	*parsing(char **tab, int *size)
 {
-	char **newtab;
-	char **splitav;
-	int *conversion;
+	char	**newtab;
+	char	**splitav;
+	int		*conversion;
 
-	if (!tab || !tab[0])
-		return (ft_printf("Error\n"), NULL);
+	if (!tab || !tab[1])
+		return (ft_putstr_fd("Error\n", 2), NULL);
 	splitav = NULL;
-	if (!tab[1])
+	if (!tab[2])
 	{
-		splitav = ft_split(tab[0], ' ');
+		splitav = ft_split(tab[1], ' ');
 		if (!splitav || !splitav[0])
 		{
 			free_tab(splitav);
-			return (ft_printf("Error\n"), NULL);
+			return (ft_putstr_fd("Error\n", 2), NULL);
 		}
 		newtab = splitav;
 	}
 	else
-		newtab = tab;
-	conversion = check_allnconvert(newtab, splitav);
+		newtab = &tab[1];
+	conversion = check_allnconvert(newtab, splitav, size);
 	return (conversion);
 }
+

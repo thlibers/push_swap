@@ -6,13 +6,27 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 13:41:06 by thlibers          #+#    #+#             */
-/*   Updated: 2025/11/22 15:35:05 by thlibers         ###   ########.fr       */
+/*   Updated: 2025/11/28 14:06:12 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-static int	check_duplicate(char **tab)
+static int	check_overflow(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+	{
+		if (ft_atol(tab[i]) < -2147483648 || ft_atol(tab[i]) > 2147483647)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+static int	check_elements(char **tab)
 {
 	int	i;
 	int	j;
@@ -21,29 +35,9 @@ static int	check_duplicate(char **tab)
 	while (tab[i])
 	{
 		j = 0;
-		while (j < i)
-		{
-			if (ft_strcmp(tab[j], tab[i]) == 0)
-				return (0);
-			j++;
-		}
-		i++;
-	}
-	return (1);
-}
-
-static int check_elements(char **tab)
-{
-	int i;
-	int j;
-
-	i = 0;
-	while(tab[i])
-	{
-		j = 0;
 		if (tab[i][j] == '+' || tab[i][j] == '-')
 			j++;
-		if(!tab[i][j])
+		if (!tab[i][j])
 			return (0);
 		while (tab[i][j])
 		{
@@ -56,28 +50,35 @@ static int check_elements(char **tab)
 	return (1);
 }
 
-static int check_overflow(char **tab)
+static int	check_duplicate(char **tab)
 {
-	int i;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (tab[i])
 	{
-		if (ft_atol(tab[i]) < INT_MIN || ft_atol(tab[i]) > INT_MAX)
-			return (0);
+		j = 0;
+		while (j < i)
+		{
+			if (ft_atoi(tab[j]) - ft_atoi(tab[i]) == 0)
+				return (0);
+			j++;
+		}
 		i++;
 	}
 	return (1);
 }
 
-static int *convert(char **tab)
+static int	*convert(char **tab, int *size)
 {
-	int *result;
-	int i;
+	int	*result;
+	int	i;
 
 	i = 0;
-	while(tab[i])
+	while (tab[i])
 		i++;
+	*size = i;
 	result = malloc(sizeof(int) * i);
 	if (!result)
 		return (NULL);
@@ -90,18 +91,18 @@ static int *convert(char **tab)
 	return (result);
 }
 
-int *check_allnconvert(char **tab, char **tmp)
+int	*check_allnconvert(char **tab, char **tmp, int *size)
 {
-	int *conversion;
-	
-	if (!check_duplicate(tab) || !check_elements(tab) || !check_overflow(tab))
+	int	*conversion;
+
+	if (!check_overflow(tab) || !check_elements(tab) || !check_duplicate(tab))
 	{
 		if (tmp)
 			free_tab(tmp);
-		return (ft_printf("Error\n"), NULL);
+		return (ft_putstr_fd("Error\n", 2), NULL);
 	}
-	conversion = convert(tab);
+	conversion = convert(tab, size);
 	if (!conversion)
-        return (ft_printf("Error\n"), NULL);
+		return (ft_putstr_fd("Error\n", 2), NULL);
 	return (conversion);
 }

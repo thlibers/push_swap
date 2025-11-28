@@ -6,17 +6,17 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 14:09:56 by thlibers          #+#    #+#             */
-/*   Updated: 2025/11/21 14:13:21 by thlibers         ###   ########.fr       */
+/*   Updated: 2025/11/24 11:50:46 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-long	ft_atol(const char *nptr)
+long long	ft_atol(const char *nptr)
 {
-	int		i;
-	long	res;
-	int		sign;
+	int			i;
+	long long	res;
+	int			sign;
 
 	i = 0;
 	res = 0;
